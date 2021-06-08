@@ -5,50 +5,33 @@ let allTheForks = [];
 let allWatchers = [];
 let names = [];
 
-axios.get('https://api.github.com/repos/vuejs/vue').then(function (response) {
-  names.push(response.data.name);
-  allTheStars.push(response.data.stargazers_count);
-  allTheForks.push(response.data.forks);
-  allWatchers.push(response.data.watchers);
-});
+function vuejsInfo() {
+  return axios.get("https://api.github.com/repos/vuejs/vue");
+}
+function angularInfo() {
+  return axios.get("https://api.github.com/repos/angular/angular.js");
+}
+function emberInfo() {
+  return axios.get("https://api.github.com/repos/emberjs/ember.js");
+}
+function svelteInfo() {
+  return axios.get("https://api.github.com/repos/sveltejs/svelte");
+}
+function reactInfo() {
+  return axios.get("https://api.github.com/repos/facebook/react");
+}
 
-axios.get('https://api.github.com/repos/angular/angular.js').then(response => {
-  names.push(response.data.name);
-  allTheStars.push(response.data.stargazers_count);
-  allTheForks.push(response.data.forks);
-  allWatchers.push(response.data.watchers);
-});
+Promise.all([vuejsInfo(), angularInfo(), emberInfo(), svelteInfo(), reactInfo()])
+  .then(function (response) {
+    // console.log(response);
+    for (const framework of response) {
+      names.push(framework.data.name);
+      allTheStars.push(framework.data.stargazers_count);
+      allTheForks.push(framework.data.forks);
+      allWatchers.push(framework.data.watchers);
+    }
+  });
 
-axios.get('https://api.github.com/repos/emberjs/ember.js').then(response => {
-  names.push(response.data.name);
-  allTheStars.push(response.data.stargazers_count);
-  allTheForks.push(response.data.forks);
-  allWatchers.push(response.data.watchers);
-});
-
-axios.get('https://api.github.com/repos/sveltejs/svelte').then(response => {
-  names.push(response.data.name);
-  allTheStars.push(response.data.stargazers_count);
-  allTheForks.push(response.data.forks);
-  allWatchers.push(response.data.watchers);
-});
-
-axios.get('https://api.github.com/repos/facebook/react').then(response => {
-  names.push(response.data.name);
-  allTheStars.push(response.data.stargazers_count);
-  allTheForks.push(response.data.forks);
-  allWatchers.push(response.data.watchers);
-});
-
-
-console.log("here are all the names");
-console.log(names);
-console.log("here are all the stars");
-console.log(allTheStars);
-console.log("Here are all the forks:")
-console.log(allTheForks);
-console.log("Here are all the watchers:")
-console.log(allWatchers);
 
 const data = {
   labels: names,
