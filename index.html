@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,17 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="index.js" defer></script>
   <title>Document</title>
+  <style>
+    h1 {
+      font-family: sans-serif;
+      text-align: center;
+    }
+  </style>
 </head>
-<body>
-  <canvas id="myChart" width="400" height="400"></canvas>
+
+<body onload="makeChartAwait()">
+  <h1 id="header">Loading Data</h1>
+  <canvas id="myChart" width="400" height="190"></canvas>
 </body>
+
 </html>

@@ -57,15 +57,24 @@ const data = {
   ]
 };
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: data,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+var myVar;
+
+function makeChartAwait() {
+  myVar = setTimeout(chartRender, 2000);
+}
+
+function chartRender() {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
-  }
-});
+  });
+  document.getElementById('header').style.display = "none";
+}
