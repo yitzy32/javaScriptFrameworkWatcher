@@ -28,7 +28,7 @@ Promise.all([vuejsInfo(), angularInfo(), emberInfo(), svelteInfo(), reactInfo()]
       names.push(framework.data.name);
       allTheStars.push(framework.data.stargazers_count);
       allTheForks.push(framework.data.forks);
-      allWatchers.push(framework.data.watchers);
+      allWatchers.push(framework.data.subscribers_count);
     }
   });
 
